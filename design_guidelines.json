@@ -1,0 +1,117 @@
+{
+  "theme": "light",
+  "archetype": "3 (Pastel & Soft) mixed with 4 (Swiss & High-Contrast)",
+  "vibe": "Editorial Analytics / Soft Intelligence Dashboard",
+  "colors": {
+    "background": {
+      "main": "#FAF9F6",
+      "card": "#FFFFFF",
+      "sidebar": "#F3F2EF"
+    },
+    "text": {
+      "primary": "#1A1A1A",
+      "secondary": "#4A4A4A",
+      "muted": "#737373"
+    },
+    "accents": {
+      "primary_pink": "#F4D8E0",
+      "secondary_mint": "#D4EFE1",
+      "lavender": "#E6DDF8",
+      "yellow": "#FDF2C8",
+      "blue": "#D8EBF6"
+    },
+    "status": {
+      "positive": "#D4EFE1",
+      "warning": "#FDF2C8",
+      "neutral": "#E6DDF8",
+      "active_node": "#F4D8E0"
+    }
+  },
+  "typography": {
+    "headings": {
+      "fontFamily": "Cormorant Garamond, serif",
+      "weights": ["300", "400", "600"],
+      "tracking": "tracking-tighter",
+      "usage": "Use for primary titles and large data numbers."
+    },
+    "body": {
+      "fontFamily": "Satoshi, system-ui, sans-serif",
+      "weights": ["400", "500", "600"],
+      "tracking": "tracking-normal",
+      "usage": "Use for all standard body text and descriptions."
+    },
+    "mono": {
+      "fontFamily": "IBM Plex Mono, monospace",
+      "weights": ["400"],
+      "usage": "Used for live AI verdicts, node tags, probability scores, and 'analysis' annotations."
+    }
+  },
+  "layout": {
+    "spacing": "Generous. Use p-6, p-8, and p-12 for dashboard panels to let data breathe.",
+    "grid_strategy": "Mode B (Control Room Grid). A fixed right sidebar (w-80 or w-96 on lg screens) for the live 'verdict' and synthetic score. Main content area holds the full-screen dynamic network graph.",
+    "borders": "1px solid border-black/5 for soft structure without heavy lines.",
+    "radius": "rounded-2xl for main cards, rounded-full for badges and small UI."
+  },
+  "surfaces": {
+    "cards": "White background, delicate 1px border (#00000010), ambient soft shadow (shadow-sm). No heavy drop shadows.",
+    "glass_panels": "Crystal Glass style for scrolling annotations and popups. backdrop-blur-xl bg-white/70, 1px white border.",
+    "graph_nodes": "Circle nodes. Soft pastel fills based on category (e.g., pink for AI, mint for full-stack), dark charcoal text."
+  },
+  "components": {
+    "network_graph": {
+      "library": "react-force-graph-2d",
+      "instructions": "Full height/width of the main section. Nodes represent projects, experiences, skills. Edges show relationships. Hover expands node into a detailed glass-morphic card overlay.",
+      "node_colors": "Use the pastel accent colors."
+    },
+    "live_verdict_sidebar": {
+      "structure": "Sticky right sidebar. Contains 'Synthetic Self Score', progress/probability bars, and a typewritten analytical paragraph.",
+      "visuals": "Use IBM Plex Mono for data labels. Progress bars should have pastel fills and rounded edges."
+    },
+    "scrolling_annotations": {
+      "behavior": "As user scrolls, fixed or absolutely positioned text elements fade in (e.g., 'DevOps cluster detected'). Use framer-motion for smooth entrance.",
+      "style": "Glassmorphism pill shapes (rounded-full). Mono font."
+    },
+    "project_cards": {
+      "interaction": "Triggered on node click/hover. Expands into a rich detail card.",
+      "content": "Problem identified, why chosen, role, tech stack (tags), challenges, outcomes. Use structured grid inside."
+    }
+  },
+  "motion_and_interactions": {
+    "global": "Micro-animations on hover (scale 1.02, subtle shadow increase). Custom cursor that acts as an 'analyzer reticle' (optional but encouraged).",
+    "graph": "Smooth physics on load. Nodes gently pulse.",
+    "text": "Staggered entrance animations. Live text generation effect for the Claude Sonnet verdicts."
+  },
+  "media_and_assets": {
+    "textures": [
+      {
+        "url": "https://images.unsplash.com/photo-1730780897906-14c86766f584?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwyfHxzb2Z0JTIwcGFzdGVsJTIwYWJzdHJhY3QlMjB0ZXh0dXJlJTIwbm9pc2V8ZW58MHx8fHwxNzgyMjI3NTMyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Soft pink and blue abstract texture",
+        "usage": "Use as a very low opacity (5-10%) background overlay for the main dashboard to add grain and depth."
+      },
+      {
+        "url": "https://images.pexels.com/photos/5506209/pexels-photo-5506209.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Soft pink textured background",
+        "usage": "Background for specific expanded project cards or hover states."
+      }
+    ],
+    "profile_images": [
+      {
+        "url": "https://images.pexels.com/photos/12899165/pexels-photo-12899165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Professional woman coding at office desk",
+        "usage": "Avatar or profile header in the verdict sidebar."
+      }
+    ]
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure dark charcoal text on pastel backgrounds passes APCA. Never use white text on pastel backgrounds.",
+    "testing": "All interactive elements, nodes, and buttons MUST have `data-testid` attributes (e.g., `data-testid=\"project-node-echotrace\"`, `data-testid=\"verdict-sidebar\"`)."
+  },
+  "instructions_to_main_agent": [
+    "Install `react-force-graph-2d` for the central network graph.",
+    "Install `framer-motion` for scroll annotations and smooth expansions.",
+    "Use Shadcn UI for progress bars, badges, and cards, but severely override defaults to match the pastel, off-white aesthetic with 1px delicate borders.",
+    "Create a hybrid layout: a massive main canvas for the graph and a fixed right sidebar (`w-80` to `w-96` depending on breakpoint).",
+    "Simulate the 'live AI analysis' by having typewriter text effects in the sidebar when interacting with different graph nodes.",
+    "Do NOT use a dark cyberpunk theme. The entire UI must feel like a sophisticated, high-end editorial magazine applied to complex data analytics."
+  ]
+}
