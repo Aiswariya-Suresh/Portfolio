@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Github, Linkedin } from "lucide-react";
 import NetworkGraph from "@/components/NetworkGraph";
 import VerdictSidebar from "@/components/VerdictSidebar";
 import ScrollAnnotations from "@/components/ScrollAnnotations";
@@ -34,12 +35,9 @@ export default function Portfolio() {
       <header className="px-6 sm:px-10 lg:px-16 pt-6 pb-3 flex items-center justify-between" data-testid="top-bar">
         <div className="flex items-center gap-3">
           <div className="h-7 w-7 rounded-full flex items-center justify-center" style={{ background: "#1A1A1A" }}>
-            <span className="font-mono text-[9px] text-white tracking-widest">ET</span>
+            <span className="font-mono text-[9px] text-white tracking-widest">AS</span>
           </div>
-          <div>
-            <div className="font-mono text-[10px] tracking-[0.22em] text-neutral-500 uppercase">Echo Trace · Career Engine</div>
-            <div className="font-display text-base leading-none">aiswariya.dossier</div>
-          </div>
+          <div className="font-display text-base leading-none">aiswariya.s</div>
         </div>
         <nav className="hidden md:flex items-center gap-7 font-mono text-[11px] text-neutral-600 uppercase tracking-widest">
           <a href="#graph" className="hover:text-black" data-reticle="hover">graph</a>
@@ -47,15 +45,38 @@ export default function Portfolio() {
           <a href="#timeline" className="hover:text-black" data-reticle="hover">timeline</a>
           <a href="#contact" className="hover:text-black" data-reticle="hover">query</a>
         </nav>
-        <div className="hidden lg:flex items-center gap-2 font-mono text-[10px] text-neutral-500">
-          <span className="pulse-dot" /> engine · online
+        <div className="flex items-center gap-3">
+          <a
+            href="https://github.com/Aiswariya-Suresh"
+            target="_blank"
+            rel="noreferrer"
+            data-testid="social-github"
+            data-reticle="hover"
+            aria-label="GitHub"
+            className="h-8 w-8 rounded-full hairline flex items-center justify-center hover:bg-neutral-900 hover:text-white transition text-neutral-700"
+          >
+            <Github size={14} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/aiswariya-s/"
+            target="_blank"
+            rel="noreferrer"
+            data-testid="social-linkedin"
+            data-reticle="hover"
+            aria-label="LinkedIn"
+            className="h-8 w-8 rounded-full hairline flex items-center justify-center hover:bg-neutral-900 hover:text-white transition text-neutral-700"
+          >
+            <Linkedin size={14} />
+          </a>
+          <div className="hidden lg:flex items-center gap-2 font-mono text-[10px] text-neutral-500 pl-2 ml-1 hairline-l">
+            <span className="pulse-dot" /> engine · online
+          </div>
         </div>
       </header>
 
       {/* Hero / Dashboard */}
       <section id="graph" className="px-6 sm:px-10 lg:px-16 pt-4 pb-10" data-testid="hero-dashboard">
         <div className="grid lg:grid-cols-[1fr_360px] gap-6">
-          {/* Left: Hero text + graph */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 14 }}
@@ -82,7 +103,6 @@ export default function Portfolio() {
             </motion.div>
 
             <div className="relative h-[540px] sm:h-[620px] rounded-2xl bg-white hairline overflow-hidden grain">
-              {/* corner marks */}
               <div className="absolute top-3 left-3 font-mono text-[10px] tracking-widest text-neutral-500 uppercase z-10">
                 live · network graph
               </div>
@@ -114,14 +134,12 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Right: live verdict sidebar */}
           <div className="lg:sticky lg:top-6 lg:self-start">
             <VerdictSidebar focusNode={hover || selected} />
           </div>
         </div>
       </section>
 
-      {/* Marquee strip */}
       <div className="hairline-t hairline-b py-3 overflow-hidden bg-white/60" data-testid="marquee">
         <div className="marquee font-mono text-[11px] text-neutral-500 uppercase tracking-widest">
           {[...MARQUEE, ...MARQUEE, ...MARQUEE].map((m, i) => (
@@ -132,21 +150,55 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Methodology */}
       <div id="methodology"><AnalysisPanels /></div>
-
-      {/* Timeline */}
       <div id="timeline"><TimelineStrip /></div>
-
-      {/* Projects grid */}
       <ProjectsGrid onOpen={setSelected} />
-
-      {/* Contact */}
       <ContactSection />
 
-      <footer className="px-6 sm:px-10 lg:px-16 py-8 hairline-t flex items-center justify-between font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
-        <span>echo trace · career engine · v2.6</span>
-        <span>© {new Date().getFullYear()} · {PROFILE.name}</span>
+      <footer className="px-6 sm:px-10 lg:px-16 py-10 hairline-t" data-testid="site-footer">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+          <div className="flex items-center gap-3">
+            <div className="h-7 w-7 rounded-full flex items-center justify-center" style={{ background: "#1A1A1A" }}>
+              <span className="font-mono text-[9px] text-white tracking-widest">AS</span>
+            </div>
+            <div>
+              <div className="font-display text-base leading-none text-neutral-900">aiswariya.s</div>
+              <div className="font-mono text-[10px] text-neutral-500 mt-1 tracking-widest uppercase">
+                career engine · v2.6
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://github.com/Aiswariya-Suresh"
+              target="_blank"
+              rel="noreferrer"
+              data-testid="footer-github"
+              data-reticle="hover"
+              aria-label="GitHub"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
+            >
+              <Github size={13} /> github.com/Aiswariya-Suresh
+            </a>
+            <a
+              href="https://www.linkedin.com/in/aiswariya-s/"
+              target="_blank"
+              rel="noreferrer"
+              data-testid="footer-linkedin"
+              data-reticle="hover"
+              aria-label="LinkedIn"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
+            >
+              <Linkedin size={13} /> linkedin.com/in/aiswariya-s
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-6 pt-5 hairline-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+          <span>© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</span>
+          <span>designed · built · analyzed — by aiswariya s</span>
+        </div>
       </footer>
 
       <ProjectModal node={selected} onClose={() => setSelected(null)} />
@@ -197,13 +249,12 @@ function ProjectsGrid({ onOpen }) {
             </div>
             <div className="font-display text-2xl text-neutral-900 leading-tight">{p.label}</div>
             <div className="text-[13px] text-neutral-600 mt-1.5">{p.headline}</div>
-            <div className="mt-4 flex flex-wrap gap-1">
-              {(p.tech || []).slice(0, 4).map((t) => (
-                <span key={t} className="font-mono text-[10px] text-neutral-500">{t}</span>
-              )).reduce((acc, el, idx, arr) => {
-                if (idx === 0) return [el];
-                return [...acc, <span key={`s-${idx}`} className="font-mono text-[10px] text-neutral-300">·</span>, el];
-              }, [])}
+            <div className="mt-4 flex flex-wrap gap-x-1.5 gap-y-0.5">
+              {(p.tech || []).slice(0, 4).map((t, idx, arr) => (
+                <span key={t} className="font-mono text-[10px] text-neutral-500">
+                  {t}{idx < arr.length - 1 ? <span className="text-neutral-300 ml-1.5">·</span> : null}
+                </span>
+              ))}
             </div>
             <span className="absolute right-4 bottom-4 font-mono text-[10px] text-neutral-400 group-hover:text-neutral-800 transition">
               expand →
