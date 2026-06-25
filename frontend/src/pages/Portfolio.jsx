@@ -85,8 +85,9 @@ export default function Portfolio() {
               className="mb-6"
             >
               <div className="flex items-center gap-2 mb-3">
-                <span className="chip" style={{ background: "#FDF2C8" }}>HackArena 2.0 · National Finalist</span>
-                <span className="chip" style={{ background: "#D4EFE1" }}>Echo Trace AI · Team Lead</span>
+                <span className="font-mono text-[10px] tracking-[0.22em] text-neutral-500 uppercase">
+                  career engine · live analysis
+                </span>
               </div>
               <h1 className="font-display text-[44px] sm:text-6xl lg:text-7xl leading-[0.98] tracking-tight text-neutral-900">
                 The portfolio is the <em className="not-italic" style={{ background: "#F4D8E0", padding: "0 8px" }}>analysis.</em>
