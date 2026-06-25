@@ -23,6 +23,11 @@ export default function Reticle() {
       className={`reticle ${hover ? "hover" : ""}`}
       style={{ left: pos.x, top: pos.y }}
       data-testid="cursor-reticle"
-    />
+    >
+      <span className="reticle-tick reticle-tick-top" />
+      <span className="reticle-tick reticle-tick-right" />
+      <span className="reticle-tick reticle-tick-bottom" />
+      <span className="reticle-tick reticle-tick-left" />
+    </div>
   );
 }

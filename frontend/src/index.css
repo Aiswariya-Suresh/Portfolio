@@ -123,28 +123,43 @@ body {
   100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
 }
 
-/* Cursor reticle */
+/* Cursor reticle — traditional 4-tick crosshair, red, pulsing */
 .reticle {
   position: fixed;
-  width: 28px; height: 28px;
-  border: 1px solid rgba(26,26,26,0.45);
+  width: 26px; height: 26px;
+  border: 1.25px solid #E11D48;
   border-radius: 9999px;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  mix-blend-mode: multiply;
-  transition: transform 0.08s ease-out, width 0.18s ease, height 0.18s ease, border-color 0.18s ease;
+  mix-blend-mode: normal;
+  box-shadow: 0 0 0 1px rgba(225, 29, 72, 0.12), 0 0 12px rgba(225, 29, 72, 0.35);
+  animation: reticlePulse 1.6s ease-in-out infinite;
+  transition: border-color 0.18s ease;
 }
-.reticle::before, .reticle::after {
-  content: ''; position: absolute; background: rgba(26,26,26,0.55);
+.reticle-tick {
+  position: absolute;
+  background: #E11D48;
+  box-shadow: 0 0 4px rgba(225, 29, 72, 0.6);
 }
-.reticle::before { left: 50%; top: -4px; width: 1px; height: 8px; }
-.reticle::after { top: 50%; left: -4px; height: 1px; width: 8px; }
-.reticle.hover { width: 44px; height: 44px; border-color: #1a1a1a; }
+.reticle-tick-top    { left: 50%; top: -8px;    width: 1.25px; height: 7px;    transform: translateX(-50%); }
+.reticle-tick-bottom { left: 50%; bottom: -8px; width: 1.25px; height: 7px;    transform: translateX(-50%); }
+.reticle-tick-left   { top: 50%;  left: -8px;   height: 1.25px; width: 7px;    transform: translateY(-50%); }
+.reticle-tick-right  { top: 50%;  right: -8px;  height: 1.25px; width: 7px;    transform: translateY(-50%); }
+.reticle.hover { border-color: #BE123C; animation-duration: 0.9s; }
+.reticle.hover .reticle-tick { background: #BE123C; }
+@keyframes reticlePulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0 1px rgba(225, 29, 72, 0.10), 0 0 8px rgba(225, 29, 72, 0.28);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.18);
+    box-shadow: 0 0 0 1px rgba(225, 29, 72, 0.22), 0 0 18px rgba(225, 29, 72, 0.55);
+  }
+}
 
-@media (max-width: 768px) {
-  .reticle { display: none; }
-}
+@media (max-width: 768px) { .reticle { display: none; } }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
