@@ -30,7 +30,7 @@ PROFILE_CONTEXT = """
 SUBJECT: Aiswariya S
 ROLE: AI & Full-Stack Developer | LLMs, NLP, Agentic AI
 EDUCATION: B.Tech Information Technology, K. Ramakrishnan College of Engineering (2024-Present), CGPA 8.22/10.
-WORK: DevOps Engineer (Project-Based) at WICE since 2025, supporting a language-learning platform serving 25,000+ active students across 50 schools (CI/CD, monitoring, deployment uptime).
+WORK: DevOps Engineer (Project-Based) at WICE since 2025, supporting a language-learning platform deployed across schools (CI/CD, monitoring, deployment uptime).
 FREELANCE: Frontend + light backend builds in HTML5/CSS3/Tailwind/Java/Python, PostgreSQL.
 FLAGSHIP: Echo Trace AI - HackArena 2.0 National Finalist. Team Lead (2-person team). AI-powered behavioral anomaly detection identifying coordinated synthetic amplification on social media via Sentence-BERT semantic similarity, NetworkX coordination graphs, temporal anomaly detection, VADER sentiment uniformity. Produces a Synthetic Influence Score (0-100) classifying conversations as Human / Mixed / Bot Swarm. Stack: Python, FastAPI, Sentence-BERT, HuggingFace Transformers, NetworkX, PyTorch Geometric (GNN), React.js, D3.js, Docker. Analyzed dataset of 11,000+ users from Tsinghua University.
 OTHER PROJECTS: Donna (anonymous posting platform, full-stack), CRMS Campus Recruitment Management System (SQL/MySQL automation), Personalized Local Search Engine, Automated Birthday Reminder script, Responsive client portfolio website.

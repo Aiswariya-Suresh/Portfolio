@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Send, Github, Linkedin, Mail } from "lucide-react";
+import { Send, Mail } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { PROFILE } from "@/data/profile";
 
@@ -55,34 +55,14 @@ export default function ContactSection() {
             <div><span className="text-neutral-400 mr-2">loc</span>{PROFILE.location}</div>
             <div><span className="text-neutral-400 mr-2">edu</span>{PROFILE.education.degree} · CGPA {PROFILE.education.cgpa}</div>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6">
             <a
               href={`mailto:${PROFILE.email}`}
               data-testid="contact-mail"
               data-reticle="hover"
               className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
             >
-              <Mail size={13} /> email
-            </a>
-            <a
-              href="https://github.com/Aiswariya-Suresh"
-              target="_blank"
-              rel="noreferrer"
-              data-testid="contact-github"
-              data-reticle="hover"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
-            >
-              <Github size={13} /> github
-            </a>
-            <a
-              href="https://www.linkedin.com/in/aiswariya-s/"
-              target="_blank"
-              rel="noreferrer"
-              data-testid="contact-linkedin"
-              data-reticle="hover"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
-            >
-              <Linkedin size={13} /> linkedin
+              <Mail size={13} /> write directly
             </a>
           </div>
         </div>

@@ -93,7 +93,7 @@ export default function Portfolio() {
                 The portfolio is the <em className="not-italic" style={{ background: "#F4D8E0", padding: "0 8px" }}>analysis.</em>
               </h1>
               <p className="mt-4 text-neutral-700 max-w-2xl text-[15px] sm:text-base leading-relaxed">
-                {PROFILE.tagline}. This page runs the same multi-signal methodology behind <span className="font-mono text-[13px]">Echo Trace AI</span> — except the subject under analysis is <span className="font-mono text-[13px]">{PROFILE.name}</span>.
+                {PROFILE.tagline}.
               </p>
               <div className="mt-4 flex flex-wrap gap-2 font-mono text-[11px] text-neutral-600">
                 <span>semantic</span><span>·</span>
@@ -157,46 +157,13 @@ export default function Portfolio() {
       <ContactSection />
 
       <footer className="px-6 sm:px-10 lg:px-16 py-10 hairline-t" data-testid="site-footer">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
           <div className="flex items-center gap-3">
             <div className="h-7 w-7 rounded-full flex items-center justify-center" style={{ background: "#1A1A1A" }}>
               <span className="font-mono text-[9px] text-white tracking-widest">AS</span>
             </div>
-            <div>
-              <div className="font-display text-base leading-none text-neutral-900">aiswariya.s</div>
-              <div className="font-mono text-[10px] text-neutral-500 mt-1 tracking-widest uppercase">
-                career engine · v2.6
-              </div>
-            </div>
+            <div className="font-display text-base leading-none text-neutral-900 normal-case tracking-normal">aiswariya.s</div>
           </div>
-
-          <div className="flex items-center gap-3">
-            <a
-              href="https://github.com/Aiswariya-Suresh"
-              target="_blank"
-              rel="noreferrer"
-              data-testid="footer-github"
-              data-reticle="hover"
-              aria-label="GitHub"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
-            >
-              <Github size={13} /> github.com/Aiswariya-Suresh
-            </a>
-            <a
-              href="https://www.linkedin.com/in/aiswariya-s/"
-              target="_blank"
-              rel="noreferrer"
-              data-testid="footer-linkedin"
-              data-reticle="hover"
-              aria-label="LinkedIn"
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full hairline font-mono text-[11px] text-neutral-700 hover:bg-neutral-900 hover:text-white transition"
-            >
-              <Linkedin size={13} /> linkedin.com/in/aiswariya-s
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-6 pt-5 hairline-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
           <span>© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</span>
           <span>designed · built · analyzed — by aiswariya s</span>
         </div>
@@ -225,7 +192,15 @@ function ProjectsGrid({ onOpen }) {
         </span>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map((p, i) => (
+        {projects.map((p, i) => {
+          const tint =
+            p.category === "ai" ? "#FBE7EE" :
+            p.category === "fullstack" ? "#E3F5EB" :
+            p.category === "devops" ? "#EFE7FA" :
+            p.category === "data" ? "#E5F1F9" :
+            p.category === "frontend" ? "#FCF6D6" :
+            "#FBE7EE";
+          return (
           <motion.button
             key={p.id}
             data-testid={`project-card-${p.id}`}
@@ -236,10 +211,11 @@ function ProjectsGrid({ onOpen }) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
             whileHover={{ y: -3 }}
-            className="text-left bg-white hairline rounded-2xl p-5 hover:shadow-sm transition relative overflow-hidden group"
+            className="text-left hairline rounded-2xl p-5 hover:shadow-sm transition relative overflow-hidden group"
+            style={{ background: `linear-gradient(165deg, #FFFFFF 0%, ${tint} 120%)` }}
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="font-mono text-[10px] tracking-widest text-neutral-500 uppercase">
+              <span className="font-mono text-[10px] tracking-widest text-neutral-600 uppercase">
                 {p.kind === "role" ? "experience" : "project"}
               </span>
               {p.badge && (
@@ -249,19 +225,19 @@ function ProjectsGrid({ onOpen }) {
               )}
             </div>
             <div className="font-display text-2xl text-neutral-900 leading-tight">{p.label}</div>
-            <div className="text-[13px] text-neutral-600 mt-1.5">{p.headline}</div>
+            <div className="text-[13px] text-neutral-700 mt-1.5">{p.headline}</div>
             <div className="mt-4 flex flex-wrap gap-x-1.5 gap-y-0.5">
               {(p.tech || []).slice(0, 4).map((t, idx, arr) => (
-                <span key={t} className="font-mono text-[10px] text-neutral-500">
-                  {t}{idx < arr.length - 1 ? <span className="text-neutral-300 ml-1.5">·</span> : null}
+                <span key={t} className="font-mono text-[10px] text-neutral-600">
+                  {t}{idx < arr.length - 1 ? <span className="text-neutral-400 ml-1.5">·</span> : null}
                 </span>
               ))}
             </div>
-            <span className="absolute right-4 bottom-4 font-mono text-[10px] text-neutral-400 group-hover:text-neutral-800 transition">
+            <span className="absolute right-4 bottom-4 font-mono text-[10px] text-neutral-500 group-hover:text-neutral-900 transition">
               expand →
             </span>
           </motion.button>
-        ))}
+        );})}
       </div>
     </section>
   );
