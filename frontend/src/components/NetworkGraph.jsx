@@ -95,6 +95,19 @@ export default function NetworkGraph({ onNodeHover, onNodeSelect, highlightId })
           if (containerRef.current) {
             containerRef.current.style.cursor = node ? "pointer" : "default";
           }
+          // Drive the global crosshair reticle to "lock on" to the hovered node.
+          if (node && fgRef.current) {
+            const zoom = fgRef.current.zoom() || 1;
+            const r = Math.max(4, node.weight / 1.6);
+            // halo padding (+6) + small extra margin so the reticle ring sits just outside the node
+            const screenDiameter = (r + 8) * 2 * zoom;
+            const size = Math.max(34, Math.min(180, screenDiameter));
+            window.dispatchEvent(
+              new CustomEvent("reticle:lock", { detail: { size } })
+            );
+          } else {
+            window.dispatchEvent(new CustomEvent("reticle:lock", { detail: { size: null } }));
+          }
         }}
         onNodeClick={(node) => {
           if (onNodeSelect) onNodeSelect(node);

@@ -148,6 +148,12 @@ body {
 .reticle-tick-right  { top: 50%;  right: -8px;  height: 1.25px; width: 7px;    transform: translateY(-50%); }
 .reticle.hover { border-color: #BE123C; animation-duration: 0.9s; }
 .reticle.hover .reticle-tick { background: #BE123C; }
+.reticle.locked {
+  border-width: 1.5px;
+  border-color: #BE123C;
+  animation-duration: 0.8s;
+}
+.reticle.locked .reticle-tick { background: #BE123C; box-shadow: 0 0 6px rgba(190, 18, 60, 0.8); }
 @keyframes reticlePulse {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
