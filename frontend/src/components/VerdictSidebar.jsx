@@ -1,21 +1,5 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
-// Static fallback so the sidebar still renders if the backend is unreachable.
-const FALLBACK = {
-  synthetic_self_score: 87,
-  classification: "Emerging Multi-Domain AI Practitioner",
-  confidence: "HIGH",
-  clusters: [
-    { name: "AI / NLP", weight: 92, color: "pink" },
-    { name: "Full-Stack", weight: 84, color: "mint" },
-    { name: "DevOps / Infra", weight: 76, color: "lavender" },
-    { name: "Data / Research", weight: 70, color: "blue" },
-    { name: "Leadership", weight: 65, color: "yellow" },
-  ],
-};
+import { PROFILE_SUMMARY } from "@/data/summary";
 
 const SELF_NOTE = (
   <>
@@ -32,19 +16,7 @@ const SELF_NOTE = (
 );
 
 export default function VerdictSidebar({ focusNode }) {
-  const [summary, setSummary] = useState(FALLBACK);
-
-  useEffect(() => {
-    if (!BACKEND_URL) return;
-    fetch(`${BACKEND_URL}/api/profile/summary`)
-      .then((r) => r.json())
-      .then((d) => {
-        // Override server-side cluster weights with the higher static values
-        // so the sidebar always reflects the curated competency picture.
-        setSummary({ ...d, clusters: FALLBACK.clusters });
-      })
-      .catch(() => {});
-  }, []);
+  const summary = PROFILE_SUMMARY;
 
   return (
     <aside
@@ -68,13 +40,13 @@ export default function VerdictSidebar({ focusNode }) {
             Synthetic Self Score
           </span>
           <span className="font-display text-5xl leading-none text-neutral-900" data-testid="self-score">
-            {summary?.synthetic_self_score ?? 87}
+            {summary.synthetic_self_score}
           </span>
         </div>
         <div className="h-1.5 mt-3 rounded-full bg-neutral-200/70 overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: `${summary?.synthetic_self_score ?? 87}%` }}
+            animate={{ width: `${summary.synthetic_self_score}%` }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="h-full"
             style={{ background: "linear-gradient(90deg,#F4D8E0,#D4EFE1,#E6DDF8)" }}
@@ -82,10 +54,10 @@ export default function VerdictSidebar({ focusNode }) {
         </div>
         <div className="mt-3 flex items-center justify-between">
           <span className="chip" style={{ background: "#F4D8E0" }}>
-            <span className="dot pink" /> {summary?.classification ?? FALLBACK.classification}
+            <span className="dot pink" /> {summary.classification}
           </span>
           <span className="font-mono text-[10px] text-neutral-600">
-            conf · {summary?.confidence ?? "HIGH"}
+            conf · {summary.confidence}
           </span>
         </div>
       </div>
@@ -95,7 +67,7 @@ export default function VerdictSidebar({ focusNode }) {
           Competency Distribution
         </div>
         <div className="space-y-2">
-          {(summary?.clusters || []).map((c) => (
+          {summary.clusters.map((c) => (
             <div key={c.name} className="flex items-center gap-3">
               <span className="font-mono text-[11px] w-28 text-neutral-700">{c.name}</span>
               <div className="flex-1 h-1.5 rounded-full bg-neutral-200/70 overflow-hidden">

@@ -3,33 +3,30 @@ import { Send, Mail } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { PROFILE } from "@/data/profile";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       toast.error("All fields are required");
       return;
     }
     setSending(true);
-    try {
-      const res = await fetch(`${BACKEND_URL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error();
-      toast.success("Query submitted · analysis logged");
+    // Opens the visitor's default email client with the query pre-filled.
+    // No backend, no API key, no server needed.
+    const subject = encodeURIComponent(`Query from ${form.name} — Career Engine`);
+    const body = encodeURIComponent(
+      `Hi Aiswariya,\n\n${form.message}\n\n— ${form.name}\n${form.email}`
+    );
+    const mailto = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+    toast.success("Opening your email app · query drafted");
+    setTimeout(() => {
       setForm({ name: "", email: "", message: "" });
-    } catch {
-      toast.error("Submission failed");
-    } finally {
       setSending(false);
-    }
+    }, 700);
   };
 
   return (

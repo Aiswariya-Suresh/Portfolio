@@ -1,34 +1,12 @@
-# Render Blueprint — auto-configures both services from this file.
-# Docs: https://render.com/docs/blueprint-spec
+# Render Blueprint — static frontend only, $0/month forever.
 services:
-  # ---- Frontend (React static site) ----
   - type: web
-    name: aiswariya-portfolio-frontend
+    name: aiswariya-portfolio
     runtime: static
     rootDir: frontend
     buildCommand: npm install --legacy-peer-deps && npm run build
     staticPublishPath: ./build
-    envVars:
-      - key: REACT_APP_BACKEND_URL
-        sync: false   # set this in the Render dashboard after backend deploys
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
-
-  # ---- Backend (FastAPI) ----
-  - type: web
-    name: aiswariya-portfolio-backend
-    runtime: python
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: MONGO_URL
-        sync: false
-      - key: DB_NAME
-        value: career_engine
-      - key: CORS_ORIGINS
-        value: "*"
-      - key: EMERGENT_LLM_KEY
-        sync: false
